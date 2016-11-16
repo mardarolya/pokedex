@@ -28,7 +28,7 @@ html(lang="en", ng-app="Pokedex")
 					div.col-sm-4(ng-repeat="pokemon in c.list | filter : searchType : type")
 						div.pokemon-card(ui-sref="Pokemon({ pokemonId: pokemon.id })", id="card-{{pokemon.id}}")
 							div.image
-								img(src="{{pokemon.image}}", alt="{{pokemon.name}}")
+								img(src="http://pokeapi.co/media/img/{{pokemon.id}}.png", alt="{{pokemon.name}}")
 							h2 {{pokemon.name}}
 							div.pokemon-type
 								span(ng-repeat="typePk in pokemon.type", class="{{typePk}}") {{typePk}}

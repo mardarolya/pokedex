@@ -29,6 +29,7 @@ html(lang="en", ng-app="Pokedex")
 						div.pokemon-card(ui-sref="Pokemon({ pokemonId: pokemon.id })", id="card-{{pokemon.id}}")
 							div.image
 								img(src="http://pokeapi.co/media/img/{{pokemon.id}}.png", alt="{{pokemon.name}}")
+								a(href="http://pokeapi.co/media/img/{{pokemon.id}}.png")
 							h2 {{pokemon.name}}
 							div.pokemon-type
 								span(ng-repeat="typePk in pokemon.type", class="{{typePk}}") {{typePk}}

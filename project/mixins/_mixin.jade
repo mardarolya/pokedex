@@ -1,0 +1,16 @@
+mixin link_style(url)
+	link(href=url rel="stylesheet")
+
+mixin script_src(srcScript)
+	script(src=srcScript, type="text/javascript")		
+
+mixin form-row
+	div.form-group&attributes(attributes)
+		block
+
+mixin fm-label(width, forLabel, text)
+	label.control-label(for=forLabel, class="col-sm-12 col-md-"+width)=text
+
+mixin fm-input(width, idInput, typeInput, ngmodel)
+	div(class="col-sm-12 col-md-"+width)
+		input.form-control(id=idInput, type=typeInput, ng-model=ngmodel)

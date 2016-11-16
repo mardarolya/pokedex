@@ -1,0 +1,13 @@
+include ../../mixins/_mixin.jade
+
+div.pokemon-card-lg
+	div.close(ng-click="c.closeWindow()")
+	div.image
+		img(src="{{c.pokemonImage}}", alt="{{c.pokemonName}}")
+	h2 {{c.pokemonName}}
+	table.skill
+		thead
+		tbody
+			tr(ng-repeat="property in c.listProperty")
+				td {{property.property}}
+				td {{property.value}}

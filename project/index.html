@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Pokedex">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1">
+    <link href="style/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <link rel="stylesheet"/>
+    <link href="style/pokemon.css" rel="stylesheet"/>
+    <title>Pokedex</title>
+  </head>
+  <body>
+    <div class="loading">
+      <p>Loading<span class="dot first"></span><span class="dot second"></span><span class="dot third"></span></p>
+    </div>
+    <div ng-controller="pokemonList as c" class="container">
+      <section class="col-sm-12">
+        <h1 class="name-pokedex">Pokedex</h1>
+        <div class="form-group">
+          <label for="search" class="control-label col-sm-12 col-md-3">Search Pokemon by type</label>
+          <div class="col-sm-12 col-md-9">
+            <input id="search" type="text" ng-model="searchType" class="form-control"/>
+          </div>
+        </div>
+      </section>
+      <div class="col-sm-12 relative-content">					
+        <section class="col-md-7 contain-pokemon">
+          <div ng-repeat="pokemon in c.list | filter : searchType : type" class="col-sm-4">
+            <div ui-sref="Pokemon({ pokemonId: pokemon.id })" id="card-{{pokemon.id}}" class="pokemon-card">
+              <div class="image"><img src="{{pokemon.image}}" alt="{{pokemon.name}}"></div>
+              <h2>{{pokemon.name}}</h2>
+              <div class="pokemon-type"><span ng-repeat="typePk in pokemon.type" class="{{typePk}}">{{typePk}}</span></div>
+            </div>
+          </div>
+          <button type="button" ng-click="c.loadData()" class="btn btn-primary col-sm-12 load-pokemon">Load More</button>
+        </section>
+        <section ui-view class="view-pokemon"></section>
+      </div>
+    </div>
+    <script src="script/angular.min.js" type="text/javascript">		</script>
+    <script src="script/angular-ui-router.min.js" type="text/javascript">		</script>
+    <script src="script/pokemon.js" type="text/javascript">		</script>
+    <script src="views/pokemon-lg/pokemon-lg.js" type="text/javascript">		</script>
+  </body>
+</html>

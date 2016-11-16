@@ -1,0 +1,42 @@
+include mixins/_mixin.jade
+
+doctype html
+html(lang="en", ng-app="Pokedex")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width,initial-scale=1.0,maximum-scale=1")
+		+link_style("style/bootstrap.min.css")
+		+link_style("style/bootstrap-responsive.min.css")
+		+link_style(href="https://fonts.googleapis.com/css?family=Days+One")
+		+link_style("style/pokemon.css")
+		title Pokedex
+	body
+		div.loading
+			p Loading
+				span.dot.first
+				span.dot.second
+				span.dot.third
+
+		div.container(ng-controller="pokemonList as c")
+			section.col-sm-12
+				h1.name-pokedex Pokedex
+				+form-row
+					+fm-label("3", "search", "Search Pokemon by type")
+					+fm-input("9", "search", "text", "searchType")
+			div.col-sm-12.relative-content					
+				section.col-md-7.contain-pokemon
+					div.col-sm-4(ng-repeat="pokemon in c.list | filter : searchType : type")
+						div.pokemon-card(ui-sref="Pokemon({ pokemonId: pokemon.id })", id="card-{{pokemon.id}}")
+							div.image
+								img(src="{{pokemon.image}}", alt="{{pokemon.name}}")
+							h2 {{pokemon.name}}
+							div.pokemon-type
+								span(ng-repeat="typePk in pokemon.type", class="{{typePk}}") {{typePk}}
+
+					button.btn.btn-primary.col-sm-12.load-pokemon(type="button", ng-click = "c.loadData()") Load More
+				section.view-pokemon(ui-view)
+
+		+script_src("script/angular.min.js")
+		+script_src("script/angular-ui-router.min.js")
+		+script_src("script/pokemon.js")
+		+script_src("views/pokemon-lg/pokemon-lg.js")
